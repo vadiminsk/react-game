@@ -13,11 +13,15 @@ const Start = () => {
     const validate = validateInput(value);
 
     if (validate) {
-      console.log(value);
+      setError([false, '']);
+      textInput.current.value = '';
+      context.addPlayer(value);
     } else {
       console.log('error');
     }
   };
+
+  console.log(context);
 
   const validateInput = (value) => {
     if (value === '') {
@@ -42,6 +46,7 @@ const Start = () => {
             ref={textInput}
           />
         </Form.Group>
+        {error[0] ? <Alert variant='danger'>{error[1]}</Alert> : null}
         <Button variant='primary' className='miami' type='submit'>
           Add player
         </Button>
