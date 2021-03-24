@@ -50,6 +50,24 @@ const Start = () => {
         <Button variant='primary' className='miami' type='submit'>
           Add player
         </Button>
+        {context.state.players && context.state.players.length > 0 ? (
+          <>
+            <hr />
+            <div>
+              <ul className='list-group'>
+                {context.state.players.map((player, index) => (
+                  <li
+                    key={index}
+                    className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
+                  >
+                    {player}
+                    <span className='badge badge-danger'>x</span>
+                  </li>
+                ))}
+              </ul>
+            </div>
+          </>
+        ) : null}
       </Form>
     </>
   );
