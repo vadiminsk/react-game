@@ -21,8 +21,6 @@ const Start = () => {
     }
   };
 
-  console.log(context);
-
   const validateInput = (value) => {
     if (value === '') {
       setError([true, 'Sorry, you need to add something']);
@@ -55,16 +53,24 @@ const Start = () => {
             <hr />
             <div>
               <ul className='list-group'>
-                {context.state.players.map((player, index) => (
+                {context.state.players.map((player, idx) => (
                   <li
-                    key={index}
+                    key={idx}
                     className='list-group-item list-group-item-action d-flex justify-content-between align-items-center'
                   >
                     {player}
-                    <span className='badge badge-danger'>x</span>
+                    <span
+                      className='badge badge-danger'
+                      onClick={() => context.removePlayer(idx)}
+                    >
+                      x
+                    </span>
                   </li>
                 ))}
               </ul>
+              <button className='action_button' onClick={() => context.next()}>
+                NEXT
+              </button>
             </div>
           </>
         ) : null}
