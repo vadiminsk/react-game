@@ -10,8 +10,15 @@ const Play = () => {
         <h3>The looser is</h3>
         <div>{context.state.result}</div>
       </div>
-      <button className='action_button'>Start Ober</button>
-      <button className='action_button btn_2'>Get new looser</button>
+      <button className='action_button' onClick={() => context.startOver()}>
+        Start Over
+      </button>
+      <button
+        className='action_button btn_2'
+        onClick={() => context.getNewLooser()}
+      >
+        Get new looser
+      </button>
     </>
   );
 };

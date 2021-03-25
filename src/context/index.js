@@ -35,8 +35,32 @@ class MyProvider extends Component {
         autoClose: 1500,
       });
     } else {
-      console.log('Move forward to Play stage');
+      this.setState(
+        {
+          stage: 2,
+        },
+        () => {
+          setTimeout(() => {
+            this.generateLooser();
+          }, 2000);
+        }
+      );
     }
+  };
+
+  generateLooser = () => {
+    const { players } = this.state;
+    this.setState({
+      result: players[Math.floor(Math.random() * players.length)],
+    });
+  };
+
+  prevState = () => {
+    this.setState({
+      stage: 1,
+      players: [],
+      result: '',
+    });
   };
 
   render() {
@@ -48,6 +72,8 @@ class MyProvider extends Component {
             addPlayer: this.addPlayerHandler,
             removePlayer: this.removePlayerHandler,
             next: this.nextHandler,
+            getNewLooser: this.generateLooser,
+            startOver: this.prevState,
           }}
         >
           {this.props.children}
